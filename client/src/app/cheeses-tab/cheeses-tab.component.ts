@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../_services/cheeses.service';
 import { CartService } from '../_services/cart.service';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { CheeseDetailComponent } from '../cheese-detail/cheese-detail.component';
 @Component({
   selector: 'app-cheeses-tab',
   templateUrl: './cheeses-tab.component.html',
@@ -10,6 +11,7 @@ import { CartService } from '../_services/cart.service';
 export class CheesesTabComponent implements OnInit {
   cheeses: [] = [];
   products: [] = [];
+  cheeseDialog: MatDialogRef<CheeseDetailComponent>;
 
   contentLoadedSups: boolean = false;
   contentLoadedProds: boolean = false;
@@ -19,8 +21,9 @@ export class CheesesTabComponent implements OnInit {
   currency: Object;
   constructor(
     private productService: ProductsService,
-    private cartService: CartService
-  ) {}
+    private cartService: CartService,
+    private dialogModel: MatDialog
+  ) { }
 
   ngOnInit() {
     //fetch products
@@ -35,5 +38,14 @@ export class CheesesTabComponent implements OnInit {
     console.log('Added to cart');
     console.log(id);
     this.cartService.AddProductToCart(id);
+  }
+
+  openDialog(id: number) {
+    this.cheeseDialog = this.dialogModel.open(CheeseDetailComponent, {
+      data: {
+        'cheese': this.products[id],
+      },
+    }
+    );
   }
 }

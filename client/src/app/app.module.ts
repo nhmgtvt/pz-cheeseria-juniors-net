@@ -18,9 +18,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
+import { CheeseDetailComponent } from './cheese-detail/cheese-detail.component';
+import { PurchasedCheesesComponent } from './purchased-cheeses/purchased-cheeses.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CheesesTabComponent],
+  declarations: [AppComponent, NavbarComponent, CheesesTabComponent, CheeseDetailComponent, PurchasedCheesesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,5 +41,6 @@ import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
     NgxPaginationModule,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [CheeseDetailComponent]
 })
 export class AppModule {}

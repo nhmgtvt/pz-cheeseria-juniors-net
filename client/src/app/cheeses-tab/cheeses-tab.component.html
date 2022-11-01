@@ -42,9 +42,9 @@
           >
             <div
               class="restaurant col-xs-12 col-sm-6 col-lg-4 col-xl-3"
-              *ngFor="let cheese of products"
+              *ngFor="let cheese of products" 
             >
-              <img src="{{ cheese.image }}" alt="" />
+              <img src="{{ cheese.image }}" alt="" onclick="" (click)="openDialog(cheese.id)"/>
               <h3>{{ cheese.title }}</h3>
               <p>
                 <strong>${{ cheese.price }}</strong>
