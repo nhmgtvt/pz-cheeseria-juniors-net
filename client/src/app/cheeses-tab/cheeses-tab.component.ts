@@ -43,7 +43,7 @@ export class CheesesTabComponent implements OnInit {
   openDialog(id: number) {
     this.cheeseDialog = this.dialogModel.open(CheeseDetailComponent, {
       data: {
-        'cheese': this.products[id],
+        'cheese': this.products[id-1],
       },
     }
     );
