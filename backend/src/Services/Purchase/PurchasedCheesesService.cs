@@ -10,7 +10,7 @@ namespace Pz.Cheeseria.Api.Services.Purchase
         {
             for (int i = 0; i < cheeses.Length; i++)
             {
-                if (cheeses[i] != null && !PurchasedCheesesRepository.PurchasedCheeses.Exists(c => c.CheeseId == cheeses[i].CheeseId))
+                if (cheeses[i] != null)
                     PurchasedCheesesRepository.PurchasedCheeses.Add(cheeses[i]);
             }
         }
