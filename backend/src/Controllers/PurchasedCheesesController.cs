@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pz.Cheeseria.Api.Data;
@@ -18,6 +19,7 @@ namespace Pz.Cheeseria.Api.Controllers
         }
 
         [HttpGet]
+        [Description("Get recently purchased cheeses")]
         [ProducesResponseType(typeof(PurchasedCheeseInfo[]), 200)]
         public IActionResult GetPurchasedCheeses()
         {
@@ -25,6 +27,7 @@ namespace Pz.Cheeseria.Api.Controllers
         }
 
         [HttpPost]
+        [Description("Create recently purchased data")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AddPurchasedCheeses([Required] [FromBody] PurchasedCheeseInfo[] purchasedCheeses)
         {

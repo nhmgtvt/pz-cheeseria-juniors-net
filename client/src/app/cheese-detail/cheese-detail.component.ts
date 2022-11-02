@@ -17,8 +17,6 @@ export class CheeseDetailComponent implements OnInit {
     this.dialogRef.close();
   }
   ngOnInit(): void {
-    console.log(this.data);
-    
   }
 
 }

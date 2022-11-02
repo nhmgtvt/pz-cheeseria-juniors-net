@@ -56,4 +56,10 @@ export class NavbarComponent implements OnInit {
       0
     );
   }
+
+  //purchase
+  purchase() {
+    this.cartService.Purchase();
+  }
+
 }
