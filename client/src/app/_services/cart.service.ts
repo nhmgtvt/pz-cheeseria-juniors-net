@@ -68,15 +68,15 @@ export class CartService {
     let purchased_cheeses = [];
     for (let key in this.cartDataClient) {
       purchased_cheeses.push({"cheeseId": Number(key), "quantity": this.cartDataClient[key]});
-      delete this.cartDataClient[key];
-      this.cartDataObs$.next(this.cartDataClient);
     }
     //call backend
       const request = this.http.post(this.server_url + '/PurchasedCheeses', purchased_cheeses);
       request.subscribe();
-      //delete this.cartDataClient;
-      console.log(this.cartDataClient);
-      
+      //empty the cart
+      for (let key in this.cartDataClient) {
+        delete this.cartDataClient[key];
+        this.cartDataObs$.next(this.cartDataClient);
+      }
     //  
     } catch (error) {
       console.log(error);
