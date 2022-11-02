@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../_services/cart.service';
 import { CartModelPublic } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { PurchasedCheesesComponent } from '../purchased-cheeses/purchased-cheeses.component';
 
 @Component({
   selector: 'app-navbar',
@@ -17,8 +19,11 @@ export class NavbarComponent implements OnInit {
 
   store: any = [];
   logo: any;
+  purchasedCheesesDialog: MatDialogRef<PurchasedCheesesComponent>;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,
+    private dialogModel: MatDialog
+    ) {}
 
   ngOnInit() {
     // set the products locally
@@ -60,6 +65,12 @@ export class NavbarComponent implements OnInit {
   //purchase
   purchase() {
     this.cartService.Purchase();
+  }
+
+  openPurchaseDialog() {
+    
+    this.purchasedCheesesDialog = this.dialogModel.open(PurchasedCheesesComponent);
+      
   }
 
 }

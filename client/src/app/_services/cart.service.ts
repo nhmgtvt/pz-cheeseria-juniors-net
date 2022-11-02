@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ProductsService } from './cheeses.service';
-import { CartModelPublic } from '../_models/cart';
+import { CartModelPublic, PurchasedCheese } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class CartService {
   cartTotals$ = new BehaviorSubject<number>(0);
   cartDataObs$ = new BehaviorSubject<CartModelPublic>(this.cartDataClient);
   productData$ = new BehaviorSubject<Cheese[]>([]);
-
+ 
+  
   constructor(private productsService: ProductsService, 
               private http: HttpClient
     ) {
@@ -26,6 +28,7 @@ export class CartService {
     this.productsService.getCheeses().subscribe((prods) => {
       this.productData$.next(prods);
     });
+
   }
 
   AddProductToCart(id: Number) {
@@ -62,25 +65,26 @@ export class CartService {
   }
 
   Purchase(){
-    console.log("Cheese purchase");
-    //call backend service and clear cart if success
-    try {
     let purchased_cheeses = [];
     for (let key in this.cartDataClient) {
-      purchased_cheeses.push({"cheeseId": Number(key), "quantity": this.cartDataClient[key]});
+      purchased_cheeses.push({"cheeseId": Number(key), "quantity": this.cartDataClient[key]} as PurchasedCheese);
     }
-    //call backend
-      const request = this.http.post(this.server_url + '/PurchasedCheeses', purchased_cheeses);
-      request.subscribe();
+    this.PostPurchasedCheeses(purchased_cheeses).subscribe(result => { 
       //empty the cart
       for (let key in this.cartDataClient) {
         delete this.cartDataClient[key];
-        this.cartDataObs$.next(this.cartDataClient);
       }
-    //  
-    } catch (error) {
-      console.log(error);
-    }
+      this.cartDataObs$.next(this.cartDataClient);
+      }, error => console.error(error));
   } 
+
+  PostPurchasedCheeses(item: PurchasedCheese[]): Observable<PurchasedCheese[]> {
+    var url = this.server_url + '/PurchasedCheeses';
+    return this.http.post<PurchasedCheese[]>(url, item);
+    }
+    
+  GetPurchasedCheeses(): Observable<any> {
+    return this.http.get<PurchasedCheese[]>(this.server_url + '/PurchasedCheeses');
+  }
 
 }

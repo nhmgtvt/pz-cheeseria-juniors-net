@@ -1,1 +1,17 @@
-<p>purchased-cheeses works!</p>
+<p>Recent Purchases</p>
+<div
+            *ngIf="contentLoadedPurchased"
+          >
+<div
+*ngFor="let cheese of purchasedData" 
+>
+<h3 class="product-name">
+    {{ getDetails(cheese.cheeseId).title }}
+  </h3>
+
+<p>
+  <strong>Quantity: {{ cheese.quantity }}</strong>
+</p>
+</div>
+</div>
+

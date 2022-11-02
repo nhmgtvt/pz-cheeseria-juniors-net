@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../_services/cheeses.service';
 import { CartService } from '../_services/cart.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CheeseDetailComponent } from '../cheese-detail/cheese-detail.component';
 @Component({
   selector: 'app-cheeses-tab',
