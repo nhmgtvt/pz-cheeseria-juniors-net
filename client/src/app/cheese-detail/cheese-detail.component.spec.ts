@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CheeseDetailComponent } from './cheese-detail.component';
 
 describe('CheeseDetailComponent', () => {
@@ -8,7 +8,12 @@ describe('CheeseDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CheeseDetailComponent ]
+      declarations: [ CheeseDetailComponent ],
+      //provide mock data to test 'should create'
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {cheese:{image:"test"}} },
+        { provide: MatDialogRef, useValue: {} },
+     ],
     })
     .compileComponents();
   });

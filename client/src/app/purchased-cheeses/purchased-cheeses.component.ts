@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import {CartModelPublic, PurchasedCheese} from '../_models/cart'
+import {PurchasedCheese} from '../_models/cart'
 import { Cheese } from '../_models/cheese';
 import { CartService } from '../_services/cart.service';
 import { ProductsService } from '../_services/cheeses.service';

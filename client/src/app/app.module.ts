@@ -9,7 +9,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -41,6 +41,6 @@ import { PurchasedCheesesComponent } from './purchased-cheeses/purchased-cheeses
     NgxPaginationModule,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CheeseDetailComponent]
+  entryComponents: [CheeseDetailComponent],
 })
 export class AppModule {}
