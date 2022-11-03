@@ -26,6 +26,7 @@
           class="nav-link"
           data-toggle="collapse"
           data-target=".navbar-collapse.show"
+          data-cy="show-recent-purchase"
           (click)="openPurchaseDialog()"
           >Recent Purchases</a
         >
@@ -167,7 +168,7 @@
             <small>{{ cartSize !== 0 ? cartSize : 0 }} Selected item(s)</small>
             <h5>TOTAL : {{ calculateTotal() | currency: "USD" }}</h5>
             <button
-            class="checkout" (click)="purchase()"
+            class="checkout" (click)="purchase()" data-cy="purchase-cart"
           >
             Purchase
           </button>

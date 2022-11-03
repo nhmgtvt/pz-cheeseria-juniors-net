@@ -5,7 +5,7 @@
 <div
 *ngFor="let cheese of purchasedData" 
 >
-<h3 class="product-name">
+<h3 class="product-name" [attr.data-cy]="'recent-purchase-' + cheese.cheeseId">
     {{ getDetails(cheese.cheeseId).title }}
   </h3>
 
