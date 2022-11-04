@@ -22,11 +22,12 @@ export class PurchasedCheesesComponent implements OnInit {
       this.products = data;
       
     });
-    this.cartService.GetPurchasedCheeses().subscribe(result => {
-      this.purchasedData = result;
-      
-      }, error => console.error(error));
-      this.contentLoadedPurchased = true;
+    
+    this.cartService.purchasedData$.subscribe((data) => {
+      this.purchasedData = data;
+    });
+
+    this.contentLoadedPurchased = true;
   }
 
   getDetails(id:number): Cheese {

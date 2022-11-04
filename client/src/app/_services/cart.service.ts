@@ -19,7 +19,7 @@ export class CartService {
   cartTotals$ = new BehaviorSubject<number>(0);
   cartDataObs$ = new BehaviorSubject<CartModelPublic>(this.cartDataClient);
   productData$ = new BehaviorSubject<Cheese[]>([]);
- 
+  purchasedData$ = new BehaviorSubject<PurchasedCheese[]>([]);
   
   constructor(private productsService: ProductsService, 
               private http: HttpClient
@@ -70,11 +70,15 @@ export class CartService {
       purchased_cheeses.push({"cheeseId": Number(key), "quantity": this.cartDataClient[key]} as PurchasedCheese);
     }
     this.PostPurchasedCheeses(purchased_cheeses).subscribe(result => { 
-      //empty the cart
+      // empty the cart on client side
       for (let key in this.cartDataClient) {
         delete this.cartDataClient[key];
       }
       this.cartDataObs$.next(this.cartDataClient);
+      // get latest purchased data
+      this.GetPurchasedCheeses().subscribe(result => {
+        this.purchasedData$.next(result);
+        }, error => console.error(error));
       }, error => console.error(error));
   } 
 
