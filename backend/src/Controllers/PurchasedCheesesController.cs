@@ -34,21 +34,5 @@ namespace Pz.Cheeseria.Api.Controllers
             _service.AddPurchasedCheeses(purchasedCheeses);
             return Created("Created", purchasedCheeses);
         }
-
-        //[HttpPut]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //public IActionResult UpdatePurchasedCheeses([Required][FromBody] PurchasedCheeseInfo[] purchasedCheeses)
-        //{
-        //    _service.UpdatePurchasedCheeses(purchasedCheeses);
-        //    return NoContent();
-        //}
-
-        //[HttpDelete("{purchasedCheeseId}")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //public IActionResult DeletePurchasedCheeses([FromRoute] int purchasedCheeseId)
-        //{
-        //    _service.DeletePurchasedCheeses(purchasedCheeseId);
-        //    return NoContent();
-        //}
     }
 }

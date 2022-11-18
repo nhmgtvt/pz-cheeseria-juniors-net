@@ -16,23 +16,6 @@ namespace Pz.Cheeseria.Api.Services.Purchase
             }
         }
 
-        //public void DeletePurchasedCheeses(int cheeseId)
-        //{
-        //    PurchasedCheesesRepository.PurchasedCheeses.RemoveAll(c => c.CheeseId == cheeseId);
-        //}
-
-        //public void UpdatePurchasedCheeses(PurchasedCheeseInfo[] info)
-        //{
-        //    for (int i = 0; i < info.Length; i++)
-        //    {
-        //        var oldPurchasedCheese = PurchasedCheesesRepository.PurchasedCheeses.Find(c => c.CheeseId == info[i].CheeseId);
-        //        if (oldPurchasedCheese != null)
-        //        {
-        //            oldPurchasedCheese.Quantity = info[i].Quantity;
-        //        }
-        //    }
-        //}
-
         IEnumerable<PurchasedCheeseInfo> IGetPurchasedCheeses.GetPurchasedCheese()
         {
             return PurchasedCheesesRepository.PurchasedCheeses;
